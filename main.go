@@ -1,11 +1,12 @@
 package main
 
 import (
-	"fmt"
+	"net/http"
 
 	"github.com/artych/k6-github-actions-example/hello"
 )
 
 func main() {
-	fmt.Println(hello.Greet())
+	http.HandleFunc("/", hello.Handler)
+	http.ListenAndServe(":8080", nil)
 }
